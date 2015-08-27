@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jogo da Forca</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js" ></script>
+        <script>
+            var cores = ["Azul", "amarelo", "Roza", "Vermelho", "Roxo", "Branco", "Preto", "Verde", "Cinza", "Prata"];
+            var cor = "";
+            var palavra = new Array();
+
+            function jogar() {
+                cor = cores[parseInt(Math.random() * cores.length)];
+                alert(cor);
+
+                palavra = new Array();;
+
+                for (i = 0; i < cor.length; i++) {
+                    palavra[i] = "_ ";
+                }
+
+                $("#spnPalavra").html(palavra);
+            }
+
+            function chutar() {
+                var letra = $("#txtLetra").val();
+                var novaFrase = "";
+                var errou = true;
+                
+                alert(letra);
+                for (i = 0; i < cor.length; i++) {
+                    if (cor.charAt(i) === letra && palavra[i] === "_ ") {
+                        palavra[i] = letra;
+                        errou = false;
+                    }
+                }
+                
+                if(errou){
+                    alert("Errou");
+                }
+                novaFrase = palavra;
+                $("#spnPalavra").html(novaFrase.toString().replace(/,/g, ''));
+
+            }
+
+
+        </script>
+    </head>
+    <body>
+
+        <div class="container-fluid">
+            <nav class="navbar navbar-default">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li role="presentation" class="active"><a href="index.html">Inicio</a></li>
+                        <li role="presentation"><a href="Jogo.html">Jogar</a></li>
+                        <li role="presentation"><a href="Contato.html">Contato</a></li>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-12">
+                    Palavra: <span id="spnPalavra"></span>
+                </div>
+                <div class="col-sm-12">
+                    <input type="button" class="btn btn-default" id="btnChutar" value="Chutar" onclick="chutar()"/>
+                </div>
+                <div class="col-sm-12">
+                    Letra: <input type="text" class="form-control" id="txtLetra" />
+                </div>
+                <div class="col-sm-12">
+                    <input type="button" class="btn btn-default" id="btnJogar" value="Jogar" onclick="jogar()"/>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
